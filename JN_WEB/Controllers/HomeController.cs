@@ -10,10 +10,14 @@ namespace JN_WEB.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Registrar()
         {
             return View();
         }
 
+        public IActionResult RecuperarAcceso()
+        {
+            return View();
+        }
     }
 }
