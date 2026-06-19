@@ -1,27 +1,33 @@
-﻿<div class="row h-100">
-    <div class="col-lg-5 col-12">
+﻿@model UsuarioModel
+@{
+    Layout = "_LayoutExterno";
+}
+
+<div class="row h-100">
+    <div class="col-lg-6 col-12">
         <div id="auth-left">
             <div class="auth-logo">
                 <a asp-action="Index" asp-controller="Home"><img src="~/images/logo-fidelitas.png" alt="Logo"></a>
             </div>
             <h1 class="auth-title">Iniciar Sesión</h1>
 
-            <form action="index.html">
+            <form asp-action="Index" asp-controller="Home" method="post">
                 <div class="form-group position-relative has-icon-left mb-4">
-                    <input type="text" class="form-control form-control-xl" placeholder="Correo Electrónico">
+                    <input asp-for="CorreoElectronico" type="text" class="form-control form-control-xl" placeholder="Correo Electrónico">
                     <div class="form-control-icon">
-                        <i class="bi bi-envelope-at"></i>
+                        <i class="bi bi-envelope"></i>
                     </div>
                 </div>
                 <div class="form-group position-relative has-icon-left mb-4">
-                    <input type="password" class="form-control form-control-xl" placeholder="Contraseña">
+                    <input asp-for="Contrasenna" type="password" class="form-control form-control-xl" placeholder="Contraseña">
                     <div class="form-control-icon">
                         <i class="bi bi-shield-lock"></i>
                     </div>
                 </div>
 
-                <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Procesar</button>
+                <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-1">Procesar</button>
             </form>
+
             <div class="text-center mt-5 text-lg fs-4">
                 <p class="text-gray-600">
                     ¿No tienes una cuenta? <a asp-action="Registrar" asp-controller="Home" class="font-bold">
@@ -29,12 +35,14 @@
                 </a>
             </p>
             <p>
-                <a class="font-bold" asp-action="RecuperarAcceso" asp-controller="Home">¿Olvidaste tu contraseña?</a>
+                <a class="font-bold" asp-action="RecuperarAcceso" asp-controller="Home">
+                    ¿Olvidaste tu contraseña?
+                </a>
             </p>
         </div>
     </div>
 </div>
-<div class="col-lg-7 d-none d-lg-block">
+<div class="col-lg-6 d-none d-lg-block">
     <div id="auth-right">
     </div>
 </div>
