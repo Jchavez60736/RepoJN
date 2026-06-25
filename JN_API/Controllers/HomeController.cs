@@ -27,7 +27,7 @@ namespace JN_API.Controllers
             if (response >= 0) 
                 return Ok(response);
 
-            return BadRequest("No se ha registrado su información correctamente");
+            return BadRequest("No se ha registrado su información, valide que no tenga una cuenta ya creada.");
         }
 
         [HttpPost("IniciarSesionAPI")]
