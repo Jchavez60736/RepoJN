@@ -3,7 +3,6 @@ using JN_WEB.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Net.Http.Headers;
-using static System.Net.WebRequestMethods;
 
 namespace JN_WEB.Controllers
 {

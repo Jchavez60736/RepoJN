@@ -1,9 +1,7 @@
 using JN_WEB.Filter;
 using JN_WEB.Models;
-using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using System.Text.Json;
 
 namespace JN_WEB.Controllers
 {

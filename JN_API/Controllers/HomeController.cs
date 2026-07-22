@@ -1,9 +1,9 @@
 ﻿using Dapper;
 using JN_API.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
 using JN_API.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 
 namespace JN_API.Controllers
 {
