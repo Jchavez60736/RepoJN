@@ -32,8 +32,8 @@ namespace JN_WEB.Controllers
 
                 HttpContext.Session.SetString("Autenticado", "1");
                 HttpContext.Session.SetString("Nombre", datos!.Nombre);
-
                 HttpContext.Session.SetInt32("Consecutivo", datos!.Consecutivo);
+                HttpContext.Session.SetString("Token", datos!.Token);
 
                 if (datos!.UsaContrasennaTemp)
                     return RedirectToAction("Configuracion", "Usuario");
