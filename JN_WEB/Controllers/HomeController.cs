@@ -32,8 +32,10 @@ namespace JN_WEB.Controllers
                 HttpContext.Session.SetString("Autenticado", "1");
                 HttpContext.Session.SetString("Nombre", datos!.Nombre);
 
+                HttpContext.Session.SetInt32("Consecutivo", datos!.Consecutivo);
+
                 if (datos!.UsaContrasennaTemp)
-                    return RedirectToAction("Seguridad", "Usuario");
+                    return RedirectToAction("Configuracion", "Usuario");
 
                 return RedirectToAction("Principal", "Home");
             }
@@ -110,21 +112,6 @@ namespace JN_WEB.Controllers
 
         #endregion
 
-        public IActionResult Principal()
-        {
-            return View();
-        }
-
-        public IActionResult Perfil()
-        {
-            return View();
-        }
-
-        public IActionResult Seguridad()
-        {
-            return View();
-        }
-
         #region Cerrar Sesión
 
         [HttpGet]
@@ -133,8 +120,12 @@ namespace JN_WEB.Controllers
             HttpContext.Session.Clear();
             return RedirectToAction("Index", "Home");
         }
-
         #endregion
 
+        [HttpGet]
+        public IActionResult Principal()
+        {
+            return View();
+        }
     }
 }
