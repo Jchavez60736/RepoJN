@@ -3,7 +3,7 @@ using JN_API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
-using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
+using Org.BouncyCastle.Crypto.Generators;
 
 namespace JN_API.Controllers
 {
@@ -31,6 +31,7 @@ namespace JN_API.Controllers
         [HttpPut("CambiarContrasennaAPI")]
         public IActionResult CambiarContrasennaAPI(CambiarContrasennaRequestModel model)
         {
+            model.Contrasenna = BCrypt.Net.BCrypt.HashPassword(model.Contrasenna);
             using var context = new SqlConnection(_config["ConnectionStrings:DefaultConnection"]);
 
             var parameters = new DynamicParameters();

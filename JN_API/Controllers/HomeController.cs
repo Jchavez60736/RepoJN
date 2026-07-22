@@ -10,7 +10,6 @@ namespace JN_API.Controllers
     [ApiController]
     public class HomeController(IConfiguration _config, IUtilesService _utiles) : ControllerBase
     {
-
         [HttpPost("RegistrarAPI")]
         public IActionResult RegistrarAPI(RegistroUsuarioRequestModel model)
         {
@@ -24,7 +23,7 @@ namespace JN_API.Controllers
 
             var response = context.Execute("spRegistrarUsuario", parameters);
 
-            if (response > 0) 
+            if (response > 0)
                 return Ok(response);
 
             return BadRequest("No se ha registrado su información, valide que no tenga una cuenta ya creada.");
@@ -40,8 +39,10 @@ namespace JN_API.Controllers
             parameters.Add("@Contrasenna", model.Contrasenna);
             var response = context.QueryFirstOrDefault<UsuarioResponseModel>("spIniciarSesionUsuario", parameters);
 
-            if (response != null)
+            if (response != null && BCrypt.Net.BCrypt.Verify(model.Contrasenna, response.Contrasenna))
+            {
                 return Ok(response);
+            }
             else
                 return NotFound("No se ha validado su información correctamente");
         }
@@ -60,10 +61,11 @@ namespace JN_API.Controllers
 
             //2. Generar una contraseña temporal
             var temporal = _utiles.GenerarContrasena();
+            var temporalCifrada = BCrypt.Net.BCrypt.HashPassword(temporal);
 
             parameters = new DynamicParameters();
             parameters.Add("@Consecutivo", response.Consecutivo);
-            parameters.Add("@Contrasenna", temporal);
+            parameters.Add("@Contrasenna", temporalCifrada);
             parameters.Add("@IndicadorTemp", true);
             var update = context.Execute("spActualizarContrasenna", parameters);
 
@@ -83,7 +85,5 @@ namespace JN_API.Controllers
 
             return BadRequest("No se ha recuperado su acceso, intente nuevamente más tarde");
         }
-
-
     }
 }
