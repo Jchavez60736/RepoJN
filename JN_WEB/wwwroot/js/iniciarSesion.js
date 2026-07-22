@@ -4,14 +4,9 @@
         return this.optional(element) || /[!@#$%^&*(),.?":{}|<>]/.test(value);
     }, "");
 
-    $("#RegistrarForm").validate({
+
+    $("#IniciarSesion").validate({
         rules: {
-            Identificacion: {
-                required: true
-            },
-            Nombre: {
-                required: true
-            },
             CorreoElectronico: {
                 required: true,
                 email: true
@@ -23,19 +18,13 @@
             }
         },
         messages: {
-            Identificacion: {
-                required: "Campo obligatorio"
-            },
-            Nombre: {
-                required: "Campo obligatorio"
-            },
             CorreoElectronico: {
                 required: "Campo obligatorio",
                 email: "Formato no válido"
             },
             Contrasenna: {
                 required: "Campo obligatorio",
-                minlength: "Mínimo 5 caracteres",
+                minlength: "Mínimo 6 caracteres",
                 caracterEspecial: "Al menos 1 caracter especial"
             }
         },
